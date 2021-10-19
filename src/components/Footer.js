@@ -5,7 +5,7 @@ const Footer = () => {
         <div className=" bg-linear-pink-invert pb-12 pt-12">
                 <div className="mx-auto container flex flex-col items-center justify-center">
                     <div className="text-black flex flex-col md:items-center f-f-l pt-3">
-                        <h1 className="text-2xl font-black">Learn Programming</h1>
+                        <h1 className="text-2xl font-black">Doctors Hub</h1>
                         <div className="md:flex items-center mt-5 md:mt-10 text-base text-color f-f-l">
                             <h2 className=" md:mr-6 pb-4 md:py-0 cursor-pointer">Download Now</h2>
                             <h2 className="cursor-pointer">License</h2>

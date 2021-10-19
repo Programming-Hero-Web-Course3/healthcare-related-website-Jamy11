@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1,
+        "name": "Dr. phillip Morphs",
+        "specialist": "Neurologist",
+        "description":  "Neurologists are specialists who treat diseases of the brain and spinal cord, peripheral nerves and muscles.",
+        "image":"1.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Dr. Jessica Stans",
+        "specialist": "Epidemiologist",
+        "description":  "Epidemiologists are public health workers who investigate patterns and causes of disease and injury",
+        "image":"2.jpg"
+
+    },
+    {
+        "id": 3,
+        "name": "Dr. Brian Holmes",
+        "specialist": "Dentist",
+        "description":  "Dentists remove tooth decay, fill cavities, and repair fractured teeth and treat problems with patients' teeth, gums, and related parts of the mouth.",
+        "image":"3.jpg"
+
+        
+    },
+    {
+        "id": 4,
+        "name": "Dr. John M Brown",
+        "specialist": "Surgeon",
+        "description":  "A surgeon is able to remove diseased tissue or organs, repair body systems, or replace diseased organs with transplants",
+        "image":"4.jpg"
+
+    },
+    {
+        "id": 5,
+        "name": "Dr. David Adams",
+        "specialist": "Plastic surgeon",
+        "description":  "Plastic Surgeon can see patients who have conditions like birth disorders, injuries, illnesses, or burns.",
+        "image":"5.jpg"
+
+    },
+    {
+        "id": 6,
+        "name": "Dr. William Stocks",
+        "specialist": "Nephrologist",
+        "description":  "Nephrologists treat kidney disease and mineral and fluid imbalances linked to kidney disease. They also treat high blood pressure.",
+        "image":"6.jpg"
+
+    },
+    {
+        "id": 7,
+        "name": "Dr. Alfredo Terento",
+        "specialist": "Cardiologist",
+        "description":  "Cardiologists focus on the treatment of the heart, its blood vessels and heart-related issues and diseases.",
+        "image":"7.jpg"
+
+    },
+    {
+        "id": 8,
+        "name": "Dr Shaun Murphy",
+        "specialist": "Anesthesiologist",
+        "description":  "An anesthesiologist administers drugs to numb pain or sedate patients during surgery. They monitor patients during surgery, keeping watch on their vital signs.",
+        "image":"8.jpg"
+
+    }
+]

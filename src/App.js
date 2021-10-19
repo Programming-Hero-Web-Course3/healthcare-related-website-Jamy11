@@ -6,6 +6,10 @@ import Home from './pages/Home';
 import ErrorPage from './pages/ErrorPage';
 import LogIn from './pages/LogIn';
 import AuthProvider from './context/AuthProvider';
+import Register from './pages/Register';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import AllDoctor from './pages/AllDoctor';
+import Doctor from './pages/Doctor';
 
 function App() {
   return (
@@ -20,6 +24,19 @@ function App() {
 
             <Route exact path='/home' component={Home} />
             <Route exact path='/login' component={LogIn} />
+            <Route exact path='/register' component={Register} />
+
+            <PrivateRoute exact path='/all-doctor'>
+
+              <AllDoctor />
+
+            </PrivateRoute>
+
+            <PrivateRoute exact path='/doctor/:id'>
+
+              <Doctor />
+
+            </PrivateRoute>
 
             <Route path='/*' component={ErrorPage} />
           </Switch>
