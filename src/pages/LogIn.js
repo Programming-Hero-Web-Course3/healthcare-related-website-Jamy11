@@ -9,7 +9,7 @@ const LogIn = () => {
     email: '',
     password: ''
   })
-  const {signInUsingGoogle ,signInWithEmailAndPassword} = useAuth();
+  const {signInUsingGoogle ,signUserUsingPassowrd} = useAuth();
   const history = useHistory()
   const location = useLocation()
 
@@ -27,7 +27,7 @@ const LogIn = () => {
 
   const signInPassowrd = ()=>{
 
-      signInWithEmailAndPassword(datas.email,datas.password)
+    signUserUsingPassowrd(datas.email,datas.password)
 
   }
 
