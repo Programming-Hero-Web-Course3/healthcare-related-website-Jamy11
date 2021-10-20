@@ -5,7 +5,6 @@ import { HashLink } from 'react-router-hash-link';
 import useAuth from '../hooks/useAuth';
 const Header = () => {
     const { user , logOut} = useAuth()
-    // console.log(user.email)
 
     return (
         <Navbar collapseOnSelect expand="lg" bg='dark' variant='dark ' sticky='top'>
@@ -22,7 +21,7 @@ const Header = () => {
                             
                             <Nav.Link onClick={logOut}>Log Out</Nav.Link>
                             <Navbar.Text>
-                                Signed in as: <a >{user.displayName}</a>
+                                Signed in as: <a >{user.displayName? user.displayName:user.email}</a>
                             </Navbar.Text>
                         </>
                         :

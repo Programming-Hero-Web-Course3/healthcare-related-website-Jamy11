@@ -1,22 +1,35 @@
 import React,{useState} from 'react'
+import { useHistory } from 'react-router';
 import useAuth from '../hooks/useAuth'
 
 
 const Register = () => {
-  const { createUserUsingPassowrd } = useAuth();
+  const { createUserUsingPassowrd , setIsLoading } = useAuth();
   const [data, setData] = useState({
     email: '',
     password: ''
   })
-
+  const history = useHistory()
   const changeData = (e)=>{
     setData({...data,[e.target.name]:e.target.value})
   }
 
-
+  function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
   const creatAccount = ()=>{
-  
-      createUserUsingPassowrd(data.email,data.password)
+    if(data.password.length >=6 && validateEmail(data.email))
+    {
+      createUserUsingPassowrd(data.email,data.password).then(
+        result=>history.push('/login').finally(()=>setIsLoading(false))
+      )
+      
+    }
+    else{
+      alert('Must be 6 letter password or a valid email address')
+    }
+      
     
     
   }

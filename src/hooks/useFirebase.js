@@ -6,6 +6,7 @@ firebaseInitialize()
 const useFirebase = () => {
 
   const [user, setUser] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
   const auth = getAuth();
   const googleProvider = new GoogleAuthProvider();
 
@@ -34,29 +35,31 @@ const useFirebase = () => {
       } else {
         setUser({})
       }
+      setIsLoading(false)
     });
   }, [])
 
 
   // Email and password
   const createUserUsingPassowrd = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setUser(userCredential.user)
-      })
-      .catch((error) => {
-        console.log(error)
-      });
+    return createUserWithEmailAndPassword(auth, email, password)
+      // .then((userCredential) => {
+      //   setUser(userCredential.user)
+      // })
+      // .catch((error) => {
+      //   console.log(error)
+      // });
   }
 
   const signUserUsingPassowrd = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setUser(userCredential.user)
-      })
-      .catch((error) => {
-        console.log(error)
-      });
+    return signInWithEmailAndPassword(auth, email, password)
+      // .then((userCredential) => {
+      //   console.log(userCredential)
+      //   setUser(userCredential.user)
+      // })
+      // .catch((error) => {
+      //   console.log(error)
+      // });
   }
 
 
@@ -67,7 +70,9 @@ const useFirebase = () => {
     signInUsingGoogle,
     logOut,
     createUserUsingPassowrd,
-    signUserUsingPassowrd
+    signUserUsingPassowrd,
+    isLoading,
+    setIsLoading
   }
 }
 

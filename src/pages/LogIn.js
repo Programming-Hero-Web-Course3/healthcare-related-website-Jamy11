@@ -1,7 +1,7 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useAuth from '../hooks/useAuth';
-import {useLocation , useHistory } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 const LogIn = () => {
 
@@ -9,35 +9,46 @@ const LogIn = () => {
     email: '',
     password: ''
   })
-  const {signInUsingGoogle ,signUserUsingPassowrd} = useAuth();
+  const { signInUsingGoogle, signUserUsingPassowrd ,setIsLoading} = useAuth();
   const history = useHistory()
   const location = useLocation()
 
   const rediect_uri = location.state?.from || '/'
 
-  const logInUsingGoogle = () =>{
-    signInUsingGoogle().then((result)=>{
+  const logInUsingGoogle = () => {
+    signInUsingGoogle().then((result) => {
       history.push(rediect_uri)
-    })
+    }).finally(()=>setIsLoading(false))
   }
 
-  const changeData = (e)=>{
-    setDatas({...datas,[e.target.name]:e.target.value})
+  const changeData = (e) => {
+    setDatas({ ...datas, [e.target.name]: e.target.value })
   }
 
-  const signInPassowrd = ()=>{
 
-    signUserUsingPassowrd(datas.email,datas.password)
+  /// for email
+  function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+  const signInPassowrd = () => {
+    if (datas.password.length >= 6 && validateEmail(datas.email)){
+      signUserUsingPassowrd(datas.email, datas.password).then(result=>
+        history.push(rediect_uri).finally(()=>setIsLoading(false))
+        )
+    }
+    else{
+      alert('Must be 6 letter password or a valid email address')
+    }
 
   }
-
 
 
   return (
 
-    <section class="text-blueGray-700">
-      <div class="container items-center px-5 py-12 lg:px-20">
-        <div class="
+    <section className="text-blueGray-700">
+      <div className="container items-center px-5 py-12 lg:px-20">
+        <div className="
       flex flex-col
       w-full
       max-w-md
@@ -52,13 +63,13 @@ const LogIn = () => {
       rounded-lg
       md:mt-0
     ">
-          <div class="mt-8">
-            <div class="mt-6">
-              <form action="#" method="POST" class="space-y-6">
+          <div className="mt-8">
+            <div className="mt-6">
+              <div action="#" method="POST" className="space-y-6">
                 <div>
-                  <label htmlFor="email" class="block text-sm font-medium text-neutral-600"> Email address </label>
-                  <div class="mt-1">
-                    <input onChange={(e)=>changeData(e)} id="email" name="email" type="email" autocomplete="email" required="" placeholder="Your Email" class="
+                  <label htmlFor="email" className="block text-sm font-medium text-neutral-600"> Email address </label>
+                  <div className="mt-1">
+                    <input onChange={(e) => changeData(e)} id="email" name="email" type="email" autoComplete="email" required="" placeholder="Your Email" className="
                   block
                   w-full
                   px-5
@@ -81,10 +92,10 @@ const LogIn = () => {
                 " />
                   </div>
                 </div>
-                <div class="space-y-1">
-                  <label htmlFor="password" class="block text-sm font-medium text-neutral-600"> Password </label>
-                  <div class="mt-1">
-                    <input onChange={(e)=>changeData(e)} id="password" name="password" type="password" autocomplete="current-password" required="" placeholder="Your Password" class="
+                <div className="space-y-1">
+                  <label htmlFor="password" className="block text-sm font-medium text-neutral-600"> Password </label>
+                  <div className="mt-1">
+                    <input onChange={(e) => changeData(e)} id="password" name="password" type="password" autoComplete="current-password" required="" placeholder="Your Password" className="
                   block
                   w-full
                   px-5
@@ -107,13 +118,13 @@ const LogIn = () => {
                 " />
                   </div>
                 </div>
-                <div class="flex items-center justify-between">
+                <div className="flex items-center justify-between">
                 </div>
-                <div class="text-sm">
-                  <Link to="/register" class="font-medium text-blue-400 hover:text-blue-500"> Dont Have Account, Create New </Link>
+                <div className="text-sm">
+                  <Link to="/register" className="font-medium text-blue-400 hover:text-blue-500"> Dont Have Account, Create New </Link>
                 </div>
                 <div>
-                  <button onClick={signInPassowrd} type="submit" class="
+                  <button onClick={signInPassowrd} type="submit" className="
                 flex
                 items-center
                 justify-center
@@ -136,17 +147,17 @@ const LogIn = () => {
                 focus:ring-blue-500
               "> Sign In </button>
                 </div>
-              </form>
-              <div class="relative my-4">
-                <div class="absolute inset-0 flex items-center">
-                  <div class="w-full border-t border-gray-300"></div>
+              </div>
+              <div className="relative my-4">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300"></div>
                 </div>
-                <div class="relative flex justify-center text-sm">
-                  <span class="px-2 text-neutral-600 bg-white"> Or continue with </span>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 text-neutral-600 bg-white"> Or continue with </span>
                 </div>
               </div>
               <div>
-                <button type="submit" class="
+                <button type="submit" className="
               w-full
               items-center
               block
@@ -167,20 +178,20 @@ const LogIn = () => {
               focus:ring-offset-2
               focus:ring-gray-500
             " onClick={logInUsingGoogle}>
-                  <div class="flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" class="w-6 h-6" viewBox="0 0 48 48">
+                  <div className="flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" className="w-6 h-6" viewBox="0 0 48 48">
                       <defs>
                         <path id="a" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"></path>
                       </defs>
                       <clipPath id="b">
                         <use xlinkHref="#a" overflow="visible"></use>
                       </clipPath>
-                      <path clip-path="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z"></path>
-                      <path clip-path="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"></path>
-                      <path clip-path="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"></path>
-                      <path clip-path="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"></path>
+                      <path clipPath="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z"></path>
+                      <path clipPath="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"></path>
+                      <path clipPath="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"></path>
+                      <path clipPath="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"></path>
                     </svg>
-                    <span class="ml-4"> Log in with Google</span>
+                    <span className="ml-4"> Log in with Google</span>
                   </div>
                 </button>
               </div>

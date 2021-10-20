@@ -1,21 +1,17 @@
-import { Button, Card } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import React from 'react'
 import { useHistory, useParams } from 'react-router'
 import {useState,useEffect} from 'react'
 
 const Doctor = () => {
     const {id} = useParams()
-
-    const [data, setData] = useState([])
-
     const [item,setItem] = useState([])
 
     useEffect(() => {
         fetch('../datas/services.json')
         .then(res =>res.json())
         .then(result => {
-            setData(result)
-            setItem(result.filter(re=>re.id==id))
+            setItem(result.filter(re=>re.id===parseInt(id)))
         })
     }, [])
 
